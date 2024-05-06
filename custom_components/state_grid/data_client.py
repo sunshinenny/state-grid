@@ -1,326 +1,345 @@
-_Al='queryYear'
-_Ak='provinceCode'
-_Aj='sceneType'
-_Ai='consNoSrc'
-_Ah='access_token'
-_Ag='businessType'
-_Af='qrCodeSerial'
-_Ae='redirect_url'
-_Ad='_access_token'
-_Ac='refresh_interval'
-_Ab='doorAccountDict'
-_Aa='refreshToken'
-_AZ='accessToken'
-_AY='/osg-web0004/member/c24/f01'
-_AX='BCP_00026'
-_AW='serviceCode_smt'
-_AV='WEBA10070900'
-_AU='serviceType'
-_AT='jM_custType'
-_AS='jM_busiTypeCode'
-_AR='consType'
-_AQ='constType'
-_AP='powerUserList'
-_AO='publicKey'
-_AN='WEBA10070800'
-_AM='timeDay'
-_AL='WEBA10070700'
-_AK='0101143'
-_AJ='channelNo'
-_AI='latestBillMonth'
-_AH='yearTotalCost'
-_AG='accountBalance'
-_AF='userAccountId'
-_AE='0000'
-_AD='refresh_token'
-_AC='skey'
-_AB='userInfo'
-_AA='0101046'
-_A9='proCode'
-_A8='loginAccount'
-_A7='keyCode'
-_A6='querytypeCode'
-_A5='01010049'
-_A4='doorNumberManeger'
-_A3='monthBillList'
-_A2='list'
-_A1='userName'
-_A0='acctId'
-_z='resultCode'
-_y='quInfo'
-_x='BCP_000026'
-_w='app'
-_v='WEBALIPAY_01'
-_u='order'
-_t='state_grid'
-_s=False
-_r='authFlag'
-_q='09'
-_p='0101183'
-_o='stepelect'
-_n='account'
-_m='consNo_dst'
-_l='token'
-_k='0101154'
-_j='getday'
-_i='consNo'
-_h='bizrt'
-_g='clearCache'
-_f='timestamp'
-_e='errmsg'
-_d='promotCode'
-_c='01'
-_b='SGAPP'
-_a='devciceId'
-_Z='devciceIp'
-_Y='orgNo'
-_X='tenant'
-_W='member'
-_V='daily_bill_list'
-_U='proNo'
-_T='promotType'
-_S='target'
-_R='userId'
-_Q='srvrt'
-_P='subBusiTypeCode'
-_O='serCat'
-_N='serialNo'
-_M='0902'
-_L='srvCode'
-_K='uscInfo'
-_J=None
-_I='busiTypeCode'
-_H='code'
-_G='channelCode'
-_F='1'
-_E='source'
-_D='funcCode'
-_C='serviceCode'
-_B='errcode'
-_A='data'
-import json,time,aiohttp,urllib.parse,datetime
-from.utils.logger import LOGGER
-from.utils.store import async_save_to_store
-from.utils.crypt import a,b,c,d,e
-appKey='3def6c365d284881bf1a9b2b502ee68c'
-appSecret='ab7357dae64944a197ace37398897f64'
-configuration={_K:{_W:_M,_Z:'',_a:'',_X:_t},_E:_b,_S:'32101',_G:_M,_AJ:_M,'toPublish':_c,'siteId':'2012000000033700',_L:'',_N:'',_D:'',_C:{_u:_k,'uploadPic':'0101296','pauseSCode':'0101250','pauseTCode':'0101251','listconsumers':'0101093','messageList':'0101343','submit':'0101003','sbcMsg':'0101210','powercut':'0104514','BkAuth01':'f15','BkAuth02':'f18','BkAuth03':'f02','BkAuth04':'f17','BkAuth05':'f05','BkAuth06':'f16','BkAuth07':'f01','BkAuth08':'f03'},'electricityArchives':{'servicecode':'0104505',_E:_M},'subscriptionList':{_L:'APP_SGPMS_05_030',_N:'22',_G:_M,_D:'22',_S:'-1'},'userInformation':{_C:'01008183',_E:_b},'userInform':{_C:_p,_E:_b},'elesum':{_G:_M,_D:_v,_d:_F,_T:_F,_C:_AK,_E:_w},_n:{_G:_M,_D:'WEBA1007200'},_A4:{_E:_M,_S:'-1',_G:_q,_AJ:_q,_C:_A5,_D:'WEBA40050000',_K:{_W:_M,_Z:'',_a:'',_X:_t}},'doorAuth':{_E:_b,_C:'f04'},'xinZ':{_O:'101',_AS:'101','fJ_busiTypeCode':'102',_AT:'03','fJ_custType':'02',_AU:_c,_P:'',_D:_AL,_u:_k,_E:_b,_A6:_F},'onedo':{_C:_AA,_E:_b,_D:_AL,'queryType':'03'},'xinHuTongDian':{_O:'110',_I:'211',_P:'21102',_D:'WEBA10071200',_G:_M,_E:_q,_C:_p},'company':{_O:'104',_D:_AL,_AU:'02',_A6:_F,_r:_F,_E:_b,_u:_k},'charge':{_G:_q,_D:'WEBA10071300',_AJ:'0901',_O:'102',_AT:_c,_AS:'102'},'other':{_G:_q,_D:'WEBA10079700',_O:'129',_I:'999',_P:'21501',_C:_x,_L:'',_N:''},'vatchange':{'submit':'0101003',_I:'320',_P:'',_O:'115',_D:'WEBA10074000',_r:_F},'bill':{_g:_F,_D:_v,_T:_F,_C:_x},_o:{_G:_M,_D:_v,_T:_F,_g:_q,_C:_x,_E:_w},_j:{_G:_M,_g:'11',_D:_v,_d:_F,_T:_F,_C:_x,_E:_w},'mouthOut':{_G:_M,_g:'11',_D:_v,_d:_F,_T:_F,_C:_x,_E:_w},'meter':{_O:'114',_I:'304',_D:'WEBA10071000',_P:'',_C:_AA,_N:''},'complaint':{_I:'005','srvMode':_M,'anonymousFlag':'0','replyMode':_c,'retvisitFlag':_c},'report':{_I:'006'},'tradewinds':{_I:'019'},'somesay':{_I:'091'},'faultrepair':{_D:_AV,_C:_p,_O:'111',_I:'001',_P:'21505'},'electronicInvoice':{_O:'105',_I:'0'},'rename':{_C:_AA,_D:'WEBA10076100',_I:'210',_O:'109',_r:_F,'gh_busiTypeCode':'211','gh_subusi':'21101',_N:'',_L:''},'pause':{_P:'',_C:_A5,_D:'WEBA10073600',_O:'107',_I:'203','jr_busi':'201',_N:'',_L:''},'capacityRecovery':{_C:_A5,_E:_b,_L:'',_N:'',_D:'WEBA10073700','busiTypeCode_stop':'204','busiTypeCode_less':'202',_I:'202',_P:'',_O:'108',_AM:'5',_r:_F},'electricityPriceChange':{_C:_p,_I:'215',_P:'21502',_O:'113',_r:_F,_AM:'15',_D:'WEBA10073900WEB',_L:'',_N:''},'electricityPriceStrategyChange':{_C:'01008183',_I:'215',_P:'21506',_O:'160',_D:'WEBV00000517WEB',_L:'',_N:''},'eemandValueAdjustment':{_C:_p,_L:'',_N:'',_O:'112',_D:'WEBA10073800',_I:'215',_P:'21504',_r:_F,_AM:'5','getMonthServiceCode':_AA},'businessProgress':{_C:_p,_L:_c,_D:'WEB01'},'increase':{_E:_b,_N:'',_L:'',_AW:_A5,_C:_k,_u:_k,_D:_AN,_A6:_F,_O:'106',_I:'111',_P:''},'fjincrea':{_O:'105',_I:'110',_P:'',_E:_b,_D:_AN,_N:'',_L:'',_AW:_A5,_C:_k,_u:_k,_A6:_F},'persIncrea':{_O:'105',_I:'109',_u:_k,_P:'',_E:_b,_D:_AN,_A6:_F},'fgdChange':{_C:_p,_L:_c,_G:_q,_D:_AV,_I:'215',_P:'21505',_O:'111',_r:_F},'createOrder':{_G:_M,_D:_v,_L:'BCP_000001','chargeMode':'02','conType':_c,'bizTypeId':'BT_ELEC'},'largePopulation':{_I:'383',_D:'WEBA10076800',_P:'',_L:'',_T:'',_d:'',_G:'0901',_O:'383',_C:'',_N:''},'biaoJiCode':{_C:'0104507',_E:'1704',_G:'1704'},'twoGuar':{_I:'402',_P:'40201',_D:'web_twoGuar'},'electTrend':{_C:_AX,_G:_M},'emergency':{_C:_AX,_D:'A10000000',_G:_M},'infoPublic':{_C:'2545454',_E:_w}}
-baseApi='https://www.95598.cn/api'
-get_request_key_api='/oauth2/outer/c02/f02'
-get_qr_code_api='/osg-open-uc0001/member/c8/f24'
-get_qr_code_status_api='/osg-web0004/open/c50/f02'
-get_qr_code_token_api='/osg-uc0013/member/c4/f04'
-send_code_api='/osg-open-uc0001/member/c8/f04'
-code_login_api='/osg-uc0013/member/c4/f02'
-getCertificationApi='/osg-open-uc0001/member/c8/f11'
-get_request_authorize_api='/oauth2/oauth/authorize'
-get_web_token_api='/oauth2/outer/getWebToken'
-refresh_web_token_api='/oauth2/outer/refresh_web_token'
-get_door_number_api='/osg-open-uc0001/member/c9/f02'
-get_door_balance_api='/osg-open-bc0001/member/c05/f01'
-get_door_bill_api='/osg-open-bc0001/member/c01/f02'
-get_door_ladder_api='/osg-open-bc0001/member/c04/f03'
-getJiaoFeiRecordApi=_AY
-get_door_daily_bill_api=_AY
-sessionIdControlApiList=[get_qr_code_api,get_qr_code_status_api,get_qr_code_token_api,send_code_api,code_login_api]
-keyCodeControlApiList=[get_qr_code_status_api,get_qr_code_token_api,send_code_api,code_login_api,getCertificationApi,get_request_authorize_api,get_web_token_api,refresh_web_token_api,get_door_number_api,get_door_balance_api,get_door_bill_api,get_door_ladder_api,getJiaoFeiRecordApi,get_door_daily_bill_api]
-authControlApiList=[get_door_number_api,get_door_balance_api,get_door_bill_api,get_door_ladder_api,getJiaoFeiRecordApi,get_door_daily_bill_api]
-tControlApiList=[getCertificationApi,get_door_balance_api,get_door_bill_api,get_door_ladder_api,getJiaoFeiRecordApi,get_door_daily_bill_api]
-def json_dumps(data):return json.dumps(data,separators=(',',':'),ensure_ascii=_s)
-def catchFloat(data):
-	try:return float(data)
-	except:return 0
+BZ='params4'
+BY='params3'
+BX='params1'
+BW='queryYear'
+BV='provinceCode'
+BU='sceneType'
+BT='consNoSrc'
+BS='access_token'
+BR='codeKey'
+BQ='businessType'
+BP='Channels'
+BO='qrCodeSerial'
+BN='redirect_url'
+BM='_access_token'
+BL='is_debug'
+BK='refresh_interval'
+BJ='doorAccountDict'
+BI='refreshToken'
+BH='accessToken'
+BG='/osg-web0004/member/c24/f01'
+BF='BCP_00026'
+BE='serviceCode_smt'
+BD='WEBA10070900'
+BC='serviceType'
+BB='jM_custType'
+BA='jM_busiTypeCode'
+B9='01008183'
+B8='0101003'
+B7='submit'
+B2='consType'
+B1='constType'
+B0='powerUserList'
+A_='publicKey'
+Az='WEBA10070800'
+Ay='timeDay'
+Ax='105'
+Aw='111'
+Av='0901'
+Au='WEBA10070700'
+At='102'
+As='0101143'
+Ar='channelNo'
+Ae='latestBillMonth'
+Ad='yearTotalCost'
+Ac='accountBalance'
+Ab='userAccountId'
+Aa='0000'
+AZ='refresh_token'
+AY='web'
+AX='skey'
+AW='userInfo'
+AV=True
+AU='215'
+AT='0101046'
+AJ='proCode'
+AI='loginAccount'
+AH='keyCode'
+AG='querytypeCode'
+AF='01010049'
+AE='doorNumberManeger'
+AD='monthBillList'
+AC='list'
+AB='userName'
+AA='acctId'
+A9='resultCode'
+A8='quInfo'
+A7='BCP_000026'
+A6='app'
+A5='WEBALIPAY_01'
+A4='order'
+A3='state_grid'
+z=False
+y='authFlag'
+x='09'
+w='0101183'
+v='stepelect'
+u='account'
+t=len
+s='consNo_dst'
+r='token'
+q='0101154'
+p='getday'
+n='consNo'
+m='bizrt'
+l='clearCache'
+j='timestamp'
+i='errmsg'
+h='promotCode'
+g='01'
+f='SGAPP'
+e='devciceId'
+d='devciceIp'
+c='orgNo'
+b='tenant'
+a='member'
+Z=str
+Y='daily_bill_list'
+X='proNo'
+W='promotType'
+V='target'
+U='userId'
+T='srvrt'
+S='subBusiTypeCode'
+Q='serCat'
+P='serialNo'
+O='0902'
+N='srvCode'
+M='uscInfo'
+L=None
+K='busiTypeCode'
+J='code'
+I='channelCode'
+H='1'
+G='source'
+E='funcCode'
+D='serviceCode'
+C='errcode'
+B='data'
+A=''
+import json as AK,time as Af,aiohttp as Ag,urllib.parse,datetime as k
+from.utils.logger import LOGGER as A0
+from.utils.store import async_save_to_store as Ba
+from.utils.crypt import a as AL,b as B3,c as A1,d as AM,e as Ah
+o='3def6c365d284881bf1a9b2b502ee68c'
+Ai='ab7357dae64944a197ace37398897f64'
+F={M:{a:O,d:A,e:A,b:A3},G:f,V:'32101',I:O,Ar:O,'toPublish':g,'siteId':'2012000000033700',N:A,P:A,E:A,D:{A4:q,'uploadPic':'0101296','pauseSCode':'0101250','pauseTCode':'0101251','listconsumers':'0101093','messageList':'0101343',B7:B8,'sbcMsg':'0101210','powercut':'0104514','BkAuth01':'f15','BkAuth02':'f18','BkAuth03':'f02','BkAuth04':'f17','BkAuth05':'f05','BkAuth06':'f16','BkAuth07':'f01','BkAuth08':'f03'},'electricityArchives':{'servicecode':'0104505',G:O},'subscriptionList':{N:'APP_SGPMS_05_030',P:'22',I:O,E:'22',V:'-1'},'userInformation':{D:B9,G:f},'userInform':{D:w,G:f},'elesum':{I:O,E:A5,h:H,W:H,D:As,G:A6},u:{I:O,E:'WEBA1007200'},AE:{G:O,V:'-1',I:x,Ar:x,D:AF,E:'WEBA40050000',M:{a:O,d:A,e:A,b:A3}},'doorAuth':{G:f,D:'f04'},'xinZ':{Q:'101',BA:'101','fJ_busiTypeCode':At,BB:'03','fJ_custType':'02',BC:g,S:A,E:Au,A4:q,G:f,AG:H},'onedo':{D:AT,G:f,E:Au,'queryType':'03'},'xinHuTongDian':{Q:'110',K:'211',S:'21102',E:'WEBA10071200',I:O,G:x,D:w},'company':{Q:'104',E:Au,BC:'02',AG:H,y:H,G:f,A4:q},'charge':{I:x,E:'WEBA10071300',Ar:Av,Q:At,BB:g,BA:At},'other':{I:x,E:'WEBA10079700',Q:'129',K:'999',S:'21501',D:A7,N:A,P:A},'vatchange':{B7:B8,K:'320',S:A,Q:'115',E:'WEBA10074000',y:H},'bill':{l:H,E:A5,W:H,D:A7},v:{I:O,E:A5,W:H,l:x,D:A7,G:A6},p:{I:O,l:'11',E:A5,h:H,W:H,D:A7,G:A6},'mouthOut':{I:O,l:'11',E:A5,h:H,W:H,D:A7,G:A6},'meter':{Q:'114',K:'304',E:'WEBA10071000',S:A,D:AT,P:A},'complaint':{K:'005','srvMode':O,'anonymousFlag':'0','replyMode':g,'retvisitFlag':g},'report':{K:'006'},'tradewinds':{K:'019'},'somesay':{K:'091'},'faultrepair':{E:BD,D:w,Q:Aw,K:'001',S:'21505'},'electronicInvoice':{Q:Ax,K:'0'},'rename':{D:AT,E:'WEBA10076100',K:'210',Q:'109',y:H,'gh_busiTypeCode':'211','gh_subusi':'21101',P:A,N:A},'pause':{S:A,D:AF,E:'WEBA10073600',Q:'107',K:'203','jr_busi':'201',P:A,N:A},'capacityRecovery':{D:AF,G:f,N:A,P:A,E:'WEBA10073700','busiTypeCode_stop':'204','busiTypeCode_less':'202',K:'202',S:A,Q:'108',Ay:'5',y:H},'electricityPriceChange':{D:w,K:AU,S:'21502',Q:'113',y:H,Ay:'15',E:'WEBA10073900WEB',N:A,P:A},'electricityPriceStrategyChange':{D:B9,K:AU,S:'21506',Q:'160',E:'WEBV00000517WEB',N:A,P:A},'eemandValueAdjustment':{D:w,N:A,P:A,Q:'112',E:'WEBA10073800',K:AU,S:'21504',y:H,Ay:'5','getMonthServiceCode':AT},'businessProgress':{D:w,N:g,E:'WEB01'},'increase':{G:f,P:A,N:A,BE:AF,D:q,A4:q,E:Az,AG:H,Q:'106',K:Aw,S:A},'fjincrea':{Q:Ax,K:'110',S:A,G:f,E:Az,P:A,N:A,BE:AF,D:q,A4:q,AG:H},'persIncrea':{Q:Ax,K:'109',A4:q,S:A,G:f,E:Az,AG:H},'fgdChange':{D:w,N:g,I:x,E:BD,K:AU,S:'21505',Q:Aw,y:H},'createOrder':{I:O,E:A5,N:'BCP_000001','chargeMode':'02','conType':g,'bizTypeId':'BT_ELEC'},'largePopulation':{K:'383',E:'WEBA10076800',S:A,N:A,W:A,h:A,I:Av,Q:'383',D:A,P:A},'biaoJiCode':{D:'0104507',G:'1704',I:'1704'},'twoGuar':{K:'402',S:'40201',E:'web_twoGuar'},'electTrend':{D:BF,I:O},'emergency':{D:BF,E:'A10000000',I:O},'infoPublic':{D:'2545454',G:A6}}
+B4='https://www.95598.cn/api'
+B5='/oauth2/outer/c02/f02'
+Aj='/osg-open-uc0001/member/c8/f24'
+Ak='/osg-web0004/open/c50/f02'
+Al='/osg-uc0013/member/c4/f04'
+Am='/osg-open-uc0001/member/c8/f04'
+An='/osg-uc0013/member/c4/f02'
+B6='/osg-open-uc0001/member/c8/f11'
+Ao='/oauth2/oauth/authorize'
+AN='/oauth2/outer/getWebToken'
+Ap='/oauth2/outer/refresh_web_token'
+Aq='/osg-open-uc0001/member/c9/f02'
+AO='/osg-open-bc0001/member/c05/f01'
+AP='/osg-open-bc0001/member/c01/f02'
+AQ='/osg-open-bc0001/member/c04/f03'
+AR=BG
+AS=BG
+Bb=[Aj,Ak,Al,Am,An]
+Bc=[Ak,Al,Am,An,B6,Ao,AN,Ap,Aq,AO,AP,AQ,AR,AS]
+Bd=[Aq,AO,AP,AQ,AR,AS]
+Be=[B6,AO,AP,AQ,AR,AS]
+def A2(data):return AK.dumps(data,separators=(',',':'),ensure_ascii=z)
+def R(data,key):
+	if key in data:
+		try:return float(data[key])
+		except:return 0
+	else:return 0
 class StateGridDataClient:
-	hass=_J;session=_J;keyCode=_J;publicKey=_J;need_login=_s;phone=_J;codeKey=_J;serialNo=_J;qrCodeSerial=_J;userInfo=_J;accountInfo=_J;powerUserList=_J;doorAccountDict={};cookie=[];timestamp=int(time.time()*1000);accessToken=_J;refreshToken=_J;token=_J;expirationDate=_J;refresh_interval=12;is_debug=_s
-	def __init__(A,hass,config=_J):
-		B=config;A.hass=hass;C=aiohttp.TCPConnector(ssl=_s);D=aiohttp.CookieJar(quote_cookie=True);A.session=aiohttp.ClientSession(cookie_jar=D,connector=C)
-		if B is not _J:
-			try:A.keyCode=B[_A7];A.publicKey=B[_AO];A.accessToken=B[_AZ];A.refreshToken=B[_Aa];A.token=B[_l];A.userInfo=B[_AB];A.powerUserList=B[_AP];A.doorAccountDict=B[_Ab];A.refresh_interval=B[_Ac];A.is_debug=B['is_debug']
-			except Exception as E:LOGGER.error(E)
-	async def save_data(A):B={};B[_A7]=A.keyCode;B[_AO]=A.publicKey;B[_AZ]=A.accessToken;B[_Aa]=A.refreshToken;B[_l]=A.token;B[_AB]=A.userInfo;B[_AP]=A.powerUserList;B[_Ab]=A.doorAccountDict;B[_Ac]=A.refresh_interval;B['is_debug']=A.is_debug;await async_save_to_store(A.hass,'state_grid.config',B)
-	def encrypt_post_data(A,data):B={_Ad:A.accessToken[len(A.accessToken)//2:]if A.accessToken else'','_t':A.token[len(A.token)//2:]if A.token else'','_data':data,_f:A.timestamp};return A.encrypt_wapper_data(B)
-	def encrypt_wapper_data(A,data):B=a(json_dumps(data),A.keyCode);return{_A:B+c(B+str(A.timestamp)),_AC:d(A.keyCode,A.publicKey),_f:str(A.timestamp)}
-	def handle_request_result_message(E,api,result):
-		D='message';C='resultMessage';A=result;B=_J
-		if _A in A and _Q in A[_A]and C in A[_A][_Q]:B=A[_A][_Q][C]
-		elif _Q in A and C in A[_Q]:B=A[_Q][C]
-		elif D in A:B=A[D]
-		else:B=json_dumps(A)
-		if E.is_debug:LOGGER.error(api+': '+B);LOGGER.error(json_dumps(A))
-		return B
-	async def fetch(B,api,data,header=_J):
-		T='encryptData';S='464606a4-184c-4beb-b442-2ab7761d0796';R='key_code';Q='state';P='sign';O='grant_type';N='application/json;charset=UTF-8';M='Content-Type';L=header;K='client_secret';I='client_id';E=api;B.timestamp=int(time.time()*1000);D=B.timestamp
-		if B.keyCode is _J:B.keyCode=e(32,16,2)
-		F=B.keyCode;G={'User-Agent':'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36','Accept':N,M:N,'version':'1.0',_E:'0901',_f:str(D),'wsgwType':'web','appKey':appKey};A=data
-		if E==get_request_key_api:A={I:appKey,K:appSecret};H=a(json_dumps(A),F);A={_A:H+c(H+str(D)),_AC:d(F,'042BC7AD510BF9793B7744C8854C56A8C95DD1027EE619247A332EC6ED5B279F435A23D62441FE861F4B0C963347ECD5792F380B64CA084BE8BE41151F8B8D19C8'),I:appKey,_f:str(D)}
-		elif E==get_qr_code_api:A={_Ad:'','_t':'','_data':A,_f:D}
-		elif E==get_request_authorize_api:
-			A={I:appKey,'response_type':_H,_Ae:'/test',_f:D,'rsi':B.token};A=urllib.parse.urlencode(A);G[M]='application/x-www-form-urlencoded; charset=UTF-8';G[_A7]=F
-			async with B.session.post(baseApi+E,data=A,headers=G)as J:B.session.cookie_jar.update_cookies(J.cookies);C=await J.json();C=b(C[_A],B.token);C=json.loads(C);return C
-		elif E==get_web_token_api:A={O:'authorization_code',P:c(appKey+str(D)),K:appSecret,Q:S,R:F,I:appKey,_f:D,_H:A[_H]};H=a(json_dumps(A),F);A={_A:H+c(H+str(D)),_AC:d(F,B.publicKey),_f:str(D)}
-		elif E==refresh_web_token_api:A={O:_AD,P:c(appKey+str(D)),K:appSecret,Q:S,R:F,I:appKey,_f:D,_AD:B.refreshToken};H=a(json_dumps(A),F);A={_A:H+c(H+str(D)),_AC:d(F,B.publicKey),_f:str(D)};E=get_web_token_api
-		else:A=B.encrypt_post_data(A)
-		if L is not _J:G.update(L)
-		if E in sessionIdControlApiList:G['sessionId']='web'+str(D)
-		if E in keyCodeControlApiList:G[_A7]=F
-		if E in authControlApiList:G['Authorization']='Bearer '+B.accessToken[:len(B.accessToken)//2]
-		if E in tControlApiList:G['t']=B.token[:len(B.token)//2]
-		async with B.session.post(baseApi+E,json=A,headers=G)as J:
-			C=await J.text()
-			if C.startswith('{'):
-				C=json.loads(C)
-				if T in C:C=b(C[T],F);C=json.loads(C)
-			return C
+	hass=L;session=L;keyCode=L;publicKey=L;need_login=z;phone=L;codeKey=L;serialNo=L;qrCodeSerial=L;userInfo=L;accountInfo=L;powerUserList=L;doorAccountDict={};cookie=[];timestamp=int(Af.time()*1000);accessToken=L;refreshToken=L;token=L;expirationDate=L;refresh_interval=12;is_debug=z
+	def __init__(A,hass,config=L):
+		B=config;A.hass=hass;C=Ag.TCPConnector(ssl=z);D=Ag.CookieJar(quote_cookie=AV);A.session=Ag.ClientSession(cookie_jar=D,connector=C)
+		if B is not L:
+			try:A.keyCode=B[AH];A.publicKey=B[A_];A.accessToken=B[BH];A.refreshToken=B[BI];A.token=B[r];A.userInfo=B[AW];A.powerUserList=B[B0];A.doorAccountDict=B[BJ];A.refresh_interval=B[BK];A.is_debug=B[BL]
+			except Exception as E:A0.error(E)
+	async def save_data(A):B={};B[AH]=A.keyCode;B[A_]=A.publicKey;B[BH]=A.accessToken;B[BI]=A.refreshToken;B[r]=A.token;B[AW]=A.userInfo;B[B0]=A.powerUserList;B[BJ]=A.doorAccountDict;B[BK]=A.refresh_interval;B[BL]=A.is_debug;await Ba(A.hass,'state_grid.config',B)
+	def encrypt_post_data(B,data):C={BM:B.accessToken[t(B.accessToken)//2:]if B.accessToken else A,'_t':B.token[t(B.token)//2:]if B.token else A,'_data':data,j:B.timestamp};return B.encrypt_wapper_data(C)
+	def encrypt_wapper_data(A,data):C=AL(A2(data),A.keyCode);return{B:C+A1(C+Z(A.timestamp)),AX:AM(A.keyCode,A.publicKey),j:Z(A.timestamp)}
+	def handle_request_result_message(F,api,result):
+		E='message';D='resultMessage';A=result;C=L
+		if B in A and T in A[B]and D in A[B][T]:C=A[B][T][D]
+		elif T in A and D in A[T]:C=A[T][D]
+		elif E in A:C=A[E]
+		else:C=A2(A)
+		if F.is_debug:A0.error(api+': '+C);A0.error(A2(A))
+		return C
+	async def fetch(D,api,data,header=L):
+		Y='encryptData';X='464606a4-184c-4beb-b442-2ab7761d0796';W='key_code';V='state';U='sign';T='grant_type';S='application/json;charset=UTF-8';R='Content-Type';Q=header;P='client_secret';N='client_id';H=api;D.timestamp=int(Af.time()*1000);F=D.timestamp
+		if D.keyCode is L:D.keyCode=Ah(32,16,2)
+		I=D.keyCode;K={'User-Agent':'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36','Accept':S,R:S,'version':'1.0',G:Av,j:Z(F),'wsgwType':AY,'appKey':o};C=data
+		if H==B5:C={N:o,P:Ai};M=AL(A2(C),I);C={B:M+A1(M+Z(F)),AX:AM(I,'042BC7AD510BF9793B7744C8854C56A8C95DD1027EE619247A332EC6ED5B279F435A23D62441FE861F4B0C963347ECD5792F380B64CA084BE8BE41151F8B8D19C8'),N:o,j:Z(F)}
+		elif H==Aj:C={BM:A,'_t':A,'_data':C,j:F}
+		elif H==Ao:
+			C={N:o,'response_type':J,BN:'/test',j:F,'rsi':D.token};C=urllib.parse.urlencode(C);K[R]='application/x-www-form-urlencoded; charset=UTF-8';K[AH]=I
+			async with D.session.post(B4+H,data=C,headers=K)as O:D.session.cookie_jar.update_cookies(O.cookies);E=await O.json();E=B3(E[B],D.token);E=AK.loads(E);return E
+		elif H==AN:C={T:'authorization_code',U:A1(o+Z(F)),P:Ai,V:X,W:I,N:o,j:F,J:C[J]};M=AL(A2(C),I);C={B:M+A1(M+Z(F)),AX:AM(I,D.publicKey),j:Z(F)}
+		elif H==Ap:C={T:AZ,U:A1(o+Z(F)),P:Ai,V:X,W:I,N:o,j:F,AZ:D.refreshToken};M=AL(A2(C),I);C={B:M+A1(M+Z(F)),AX:AM(I,D.publicKey),j:Z(F)};H=AN
+		else:C=D.encrypt_post_data(C)
+		if Q is not L:K.update(Q)
+		if H in Bb:K['sessionId']=AY+Z(F)
+		if H in Bc:K[AH]=I
+		if H in Bd:K['Authorization']='Bearer '+D.accessToken[:t(D.accessToken)//2]
+		if H in Be:K['t']=D.token[:t(D.token)//2]
+		async with D.session.post(B4+H,json=C,headers=K)as O:
+			E=await O.text()
+			if E.startswith('{'):
+				E=AK.loads(E)
+				if Y in E:E=B3(E[Y],I);E=AK.loads(E)
+			return E
 	async def __get_request_key(A):
-		A.keyCode=_J;B=await A.fetch(get_request_key_api,{});C=A.handle_request_result_message('get_request_key_api',B)
-		if B[_H]==_F:A.keyCode=B[_A][_A7];A.publicKey=B[_A][_AO];return{_B:0}
-		return{_B:1,_e:C}
-	async def __get_qr_code(B):
-		C={_K:{_Z:'',_X:_t,_W:_M,_a:''},_y:{'optType':_c,_N:e(28,10,1)}};A=await B.fetch(get_qr_code_api,C);D=B.handle_request_result_message('get_qr_code_api',A)
-		if A[_H]==1:
-			if A[_A]and A[_A][_Q]and A[_A][_Q][_z]==_AE:B.qrCodeSerial=A[_A][_h][_Af];E=A[_A][_h]['qrCode'];return{_B:0,_A:E}
-		return{_B:1,_e:D}
-	async def __get_qr_code_status(B):
-		C={_h:{_Af:B.qrCodeSerial}};D={_l:'98'+e(10,10,1)};A=await B.fetch(get_qr_code_status_api,C,D);E=B.handle_request_result_message('get_qr_code_status_api',A)
-		if _H in A and A[_H]==1:
-			if _A in A and A[_A]!='null':B.token=A[_A];return{_B:0}
-			else:return{_B:1,_e:'未使用网上国网 App 扫码或确认登录'}
-		return{_B:1,_e:E}
+		A.keyCode=L;D=await A.fetch(B5,{});E=A.handle_request_result_message('get_request_key_api',D)
+		if D[J]==H:A.keyCode=D[B][AH];A.publicKey=D[B][A_];return{C:0}
+		return{C:1,i:E}
+	async def __get_qr_code(E):
+		F={M:{d:A,b:A3,a:O,e:A},A8:{'optType':g,P:Ah(28,10,1)}};D=await E.fetch(Aj,F);G=E.handle_request_result_message('get_qr_code_api',D)
+		if D[J]==1:
+			if D[B]and D[B][T]and D[B][T][A9]==Aa:E.qrCodeSerial=D[B][m][BO];H=D[B][m]['qrCode'];return{C:0,B:H}
+		return{C:1,i:G}
+	async def __get_qr_code_status(D):
+		E={m:{BO:D.qrCodeSerial}};F={r:'98'+Ah(10,10,1)};A=await D.fetch(Ak,E,F);G=D.handle_request_result_message('get_qr_code_status_api',A)
+		if J in A and A[J]==1:
+			if B in A and A[B]!='null':D.token=A[B];return{C:0}
+			else:return{C:1,i:'未使用网上国网 App 扫码或确认登录'}
+		return{C:1,i:G}
 	async def __get_qr_code_token(B):
-		C={_K:{_X:_t,_W:_M,'isEncrypt':True},_l:B.token};A=await B.fetch(get_qr_code_token_api,C);D=B.handle_request_result_message('get_qr_code_token_api',A)
-		if _Q in A and _z in A[_Q]and A[_Q][_z]==_AE:B.userInfo=A[_h][_AB];return{_B:0}
-		return{_B:1,_e:D}
-	async def __send_code(B,phone):
-		C=phone;B.phone=C;D={_K:{_Z:'',_X:_t,_W:_M,_a:''},_y:{'sendType':'0',_n:C,_Ag:'login','accountType':''},'Channels':'web'};A=await B.fetch(send_code_api,D);E=B.handle_request_result_message('send_code_api',A)
-		if A[_H]==1:
-			if A[_A]and A[_A][_Q]and A[_A][_Q][_z]==_AE:B.codeKey=A[_A][_h]['codeKey'];return{_B:0}
-		return{_B:1,_e:E}
-	async def __verfiy_code(A,code):
-		C={_K:{_Z:'',_X:_t,_W:_M,_a:''},_y:{_n:A.phone,_Ag:'login',_H:code,'optSys':'ios','pushId':'00000','codeKey':A.codeKey},'Channels':'web'};B=await A.fetch(code_login_api,C);D=A.handle_request_result_message('code_login_api',B)
-		if _Q in B and _z in B[_Q]and B[_Q][_z]==_AE:A.token=B[_h][_l];A.userInfo=B[_h][_AB][0];return{_B:0}
-		return{_B:1,_e:D}
-	async def __get_request_authorize(B):
-		A=await B.fetch(get_request_authorize_api,{});E=B.handle_request_result_message('get_request_authorize_api',A)
-		if _H in A and A[_H]==_F:C=A[_A][_Ae];D=C.rfind('code=');B.authorizeCode=C[D+5:D+5+32];return{_B:0}
-		return{_B:1,_e:E}
+		D={M:{b:A3,a:O,'isEncrypt':AV},r:B.token};A=await B.fetch(Al,D);E=B.handle_request_result_message('get_qr_code_token_api',A)
+		if T in A and A9 in A[T]and A[T][A9]==Aa:B.userInfo=A[m][AW];return{C:0}
+		return{C:1,i:E}
+	async def __send_code(E,phone):
+		F=phone;E.phone=F;G={M:{d:A,b:A3,a:O,e:A},A8:{'sendType':'0',u:F,BQ:'login','accountType':A},BP:AY};D=await E.fetch(Am,G);H=E.handle_request_result_message('send_code_api',D)
+		if D[J]==1:
+			if D[B]and D[B][T]and D[B][T][A9]==Aa:E.codeKey=D[B][m][BR];return{C:0}
+		return{C:1,i:H}
+	async def __verfiy_code(B,code):
+		E={M:{d:A,b:A3,a:O,e:A},A8:{u:B.phone,BQ:'login',J:code,'optSys':'ios','pushId':'00000',BR:B.codeKey},BP:AY};D=await B.fetch(An,E);F=B.handle_request_result_message('code_login_api',D)
+		if T in D and A9 in D[T]and D[T][A9]==Aa:B.token=D[m][r];B.userInfo=D[m][AW][0];return{C:0}
+		return{C:1,i:F}
+	async def __get_request_authorize(D):
+		A=await D.fetch(Ao,{});G=D.handle_request_result_message('get_request_authorize_api',A)
+		if J in A and A[J]==H:E=A[B][BN];F=E.rfind('code=');D.authorizeCode=E[F+5:F+5+32];return{C:0}
+		return{C:1,i:G}
 	async def __get_web_token(A):
-		C={_H:A.authorizeCode};B=await A.fetch(get_web_token_api,C);D=A.handle_request_result_message('get_web_token_api',B)
-		if _H in B and B[_H]==_F:A.accessToken=B[_A][_Ah];A.refreshToken=B[_A][_AD];return{_B:0}
-		return{_B:1,_e:D}
-	async def __refresh_web_token(B):
-		A=await B.fetch(refresh_web_token_api,{});C=B.handle_request_result_message('refresh_web_token_api',A)
-		if _H in A and A[_H]==_F:B.accessToken=A[_A][_Ah];B.refreshToken=A[_A][_AD];return{_B:0}
-		return{_B:1,_e:C}
-	async def __get_door_number(B):
-		C={_C:configuration[_C],_E:configuration[_E],_S:configuration[_S],_K:{_W:configuration[_A4][_K][_W],_Z:configuration[_A4][_K][_Z],_a:configuration[_A4][_K][_a],_X:configuration[_A4][_K][_X]},_y:{_R:B.userInfo[_R]},_l:B.token};A=await B.fetch(get_door_number_api,C);D=B.handle_request_result_message('get_door_number_api',A)
-		if _H in A and A[_H]==1 and _A in A and _h in A[_A]:B.powerUserList=A[_A][_h][_AP];return{_B:0}
-		return{_B:1,_e:D}
-	async def __get_door_balance(C,door_account):
-		A=door_account;E={_A:{_L:'',_N:'',_G:configuration[_n][_G],_D:configuration[_n][_D],_A0:C.userInfo[_R],_A1:C.userInfo[_A8],_T:_F,_d:_F,_AF:C.userInfo[_R],_A2:[{_Ai:A[_m],_A9:A[_U],_Aj:A[_AQ],_i:A[_i],_Y:A[_Y]}]},_C:_AK,_E:configuration[_E],_S:A[_U]};B=await C.fetch(get_door_balance_api,E);C.handle_request_result_message('get_door_balance_api',B)
-		if _H in B and B[_H]==1 and _A in B and _A2 in B[_A]:
-			D=B[_A][_A2]
-			if len(D)!=0:A[_AG]=D[0]
-	async def __get_door_bill(C,door_account,year):
-		F='dataInfo';D='mothEleList';A=door_account;E={_A:{_L:'',_N:'',_G:configuration[_n][_G],_D:configuration[_n][_D],_A0:C.userInfo[_R],_A1:C.userInfo[_A8],_T:_F,_d:_F,_AF:C.userInfo[_R],_A2:[{_Ai:A[_m],_A9:A[_U],_Aj:A['consSortCode'],_i:A[_i],_Y:A[_Y]}]},_C:_AK,_E:configuration[_E],_S:A[_U]};E={_A:{_A0:C.userInfo[_R],_G:configuration[_G],_g:'11',_AR:A[_AQ],_D:'ALIPAY_01',_Y:A[_Y],_A9:A[_U],_d:_F,_T:_F,_N:'',_L:'',_A1:'',_Ak:A[_U],_AF:C.userInfo[_R],_i:A[_i],_Al:year},_C:_x,_E:_w,_S:A[_U]};B=await C.fetch(get_door_bill_api,E);C.handle_request_result_message('get_door_bill_api',B)
-		if _H in B and B[_H]==1 and _A in B:
-			if F in B[_A]:A[_AH]=B[_A][F]
-			if D in B[_A]:A[_A3]=B[_A][D];A[_AI]=B[_A][D][-1]['month']
-	async def __get_door_ladder(B,door_account,month):
-		F='ladder_flag';E=month;A=door_account;G=A[_m];H={_A:{_G:configuration[_o][_G],_D:configuration[_o][_D],_T:configuration[_o][_T],_g:configuration[_o][_g],_i:A[_m],_d:A[_U],_Y:A[_Y],'queryDate':E,_Ak:A[_U],_AR:A[_AQ],_AF:B.userInfo[_R],_N:'',_L:'',_A1:B.userInfo[_A8],_A0:B.userInfo[_R]},_C:configuration[_o][_C],_E:configuration[_o][_E],_S:A[_U]};C=await B.fetch(get_door_ladder_api,H);I=B.handle_request_result_message('get_door_ladder_api',C)
-		if _H in C and C[_H]==1 and _A in C and _A2 in C[_A]:
-			D=C[_A][_A2]
-			if len(D)!=0:
-				D=D[0];D['month']=E
-				if D['electricParticulars']['levelFlag']=='2':A[F]=1
-				else:A[F]=0
-				B.doorAccountDict[G]['ladder']=D
-	async def __get_door_daily_bill(A,door_account,year,start_date,end_date):
-		D='sevenEleList';C=door_account;E={'params1':{_C:configuration[_C],_E:configuration[_E],_S:configuration[_S],_K:{_W:configuration[_K][_W],_Z:configuration[_K][_Z],_a:configuration[_K][_a],_X:configuration[_K][_X]},_y:{_R:A.userInfo[_R]},_l:A.token},'params3':{_A:{_A0:A.userInfo[_R],_i:C[_m],_AR:_c,'endTime':end_date,_Y:C[_Y],_Al:year,_A9:C[_U],_N:'',_L:'','startTime':start_date,_A1:A.userInfo[_A8],_D:configuration[_j][_D],_G:configuration[_j][_G],_g:configuration[_j][_g],_d:configuration[_j][_d],_T:configuration[_j][_T]},_C:configuration[_j][_C],_E:configuration[_j][_E],_S:C[_U]},'params4':'010103'};B=await A.fetch(get_door_daily_bill_api,E);F=A.handle_request_result_message('get_door_daily_bill_api',B)
-		if _H in B and B[_H]==1 and _A in B and D in B[_A]:C[_V]=B[_A][D]
-	async def __get_door_pay_record(A,door_account):B=door_account;D=B[_m];C={'params1':{_C:configuration[_C],_E:configuration[_E],_S:configuration[_S],_K:{_W:configuration[_K][_W],_Z:configuration[_K][_Z],_a:configuration[_K][_a],_X:configuration[_K][_X]},_y:{_R:A.userInfo[_R]},_l:A.token},'params3':{_A:{_A0:A.userInfo[_R],'bgnPayDate':'2023-04-24',_G:configuration[_G],_i:B[_m],'endPayDate':'2024-04-24',_D:'webALIPAY_01','number':100,_Y:B[_Y],'page':_F,_A9:B[_U],_d:_F,_T:_F,_N:'',_L:'',_A1:A.userInfo[_A8]},_C:'0101051',_E:_c,_S:B[_U]},'params4':'010104'};E=await A.fetch(getJiaoFeiRecordApi,C)
+		E={J:A.authorizeCode};D=await A.fetch(AN,E);F=A.handle_request_result_message('get_web_token_api',D)
+		if J in D and D[J]==H:A.accessToken=D[B][BS];A.refreshToken=D[B][AZ];return{C:0}
+		return{C:1,i:F}
+	async def __refresh_web_token(D):
+		A=await D.fetch(Ap,{});E=D.handle_request_result_message('refresh_web_token_api',A)
+		if J in A and A[J]==H:D.accessToken=A[B][BS];D.refreshToken=A[B][AZ];return{C:0}
+		return{C:1,i:E}
+	async def __get_door_number(E):
+		H={D:F[D],G:F[G],V:F[V],M:{a:F[AE][M][a],d:F[AE][M][d],e:F[AE][M][e],b:F[AE][M][b]},A8:{U:E.userInfo[U]},r:E.token};A=await E.fetch(Aq,H);I=E.handle_request_result_message('get_door_number_api',A)
+		if J in A and A[J]==1 and B in A and m in A[B]:E.powerUserList=A[B][m][B0];return{C:0}
+		return{C:1,i:I}
+	async def __get_door_balance(L,door_account):
+		C=door_account;O={B:{N:A,P:A,I:F[u][I],E:F[u][E],AA:L.userInfo[U],AB:L.userInfo[AI],W:H,h:H,Ab:L.userInfo[U],AC:[{BT:C[s],AJ:C[X],BU:C[B1],n:C[n],c:C[c]}]},D:As,G:F[G],V:C[X]};K=await L.fetch(AO,O);L.handle_request_result_message('get_door_balance_api',K)
+		if J in K and K[J]==1 and B in K and AC in K[B]:
+			M=K[B][AC]
+			if t(M)!=0:C[Ac]=M[0]
+	async def __get_door_bill(L,door_account,year):
+		Q='dataInfo';M='mothEleList';C=door_account;O={B:{N:A,P:A,I:F[u][I],E:F[u][E],AA:L.userInfo[U],AB:L.userInfo[AI],W:H,h:H,Ab:L.userInfo[U],AC:[{BT:C[s],AJ:C[X],BU:C['consSortCode'],n:C[n],c:C[c]}]},D:As,G:F[G],V:C[X]};O={B:{AA:L.userInfo[U],I:F[I],l:'11',B2:C[B1],E:'ALIPAY_01',c:C[c],AJ:C[X],h:H,W:H,P:A,N:A,AB:A,BV:C[X],Ab:L.userInfo[U],n:C[n],BW:year},D:A7,G:A6,V:C[X]};K=await L.fetch(AP,O);L.handle_request_result_message('get_door_bill_api',K)
+		if J in K and K[J]==1 and B in K:
+			if Q in K[B]:C[Ad]=K[B][Q]
+			if M in K[B]:C[AD]=K[B][M];C[Ae]=K[B][M][-1]['month']
+	async def __get_door_ladder(H,door_account,month):
+		O='ladder_flag';M=month;C=door_account;Q=C[s];R={B:{I:F[v][I],E:F[v][E],W:F[v][W],l:F[v][l],n:C[s],h:C[X],c:C[c],'queryDate':M,BV:C[X],B2:C[B1],Ab:H.userInfo[U],P:A,N:A,AB:H.userInfo[AI],AA:H.userInfo[U]},D:F[v][D],G:F[v][G],V:C[X]};K=await H.fetch(AQ,R);S=H.handle_request_result_message('get_door_ladder_api',K)
+		if J in K and K[J]==1 and B in K and AC in K[B]:
+			L=K[B][AC]
+			if t(L)!=0:
+				L=L[0];L['month']=M
+				if L['electricParticulars']['levelFlag']=='2':C[O]=1
+				else:C[O]=0
+				H.doorAccountDict[Q]['ladder']=L
+	async def __get_door_daily_bill(C,door_account,year,start_date,end_date):
+		L='sevenEleList';K=door_account;O={BX:{D:F[D],G:F[G],V:F[V],M:{a:F[M][a],d:F[M][d],e:F[M][e],b:F[M][b]},A8:{U:C.userInfo[U]},r:C.token},BY:{B:{AA:C.userInfo[U],n:K[s],B2:g,'endTime':end_date,c:K[c],BW:year,AJ:K[X],P:A,N:A,'startTime':start_date,AB:C.userInfo[AI],E:F[p][E],I:F[p][I],l:F[p][l],h:F[p][h],W:F[p][W]},D:F[p][D],G:F[p][G],V:K[X]},BZ:'010103'};H=await C.fetch(AS,O);Q=C.handle_request_result_message('get_door_daily_bill_api',H)
+		if J in H and H[J]==1 and B in H and L in H[B]:K[Y]=H[B][L]
+	async def __get_door_pay_record(C,door_account):J=door_account;L=J[s];K={BX:{D:F[D],G:F[G],V:F[V],M:{a:F[M][a],d:F[M][d],e:F[M][e],b:F[M][b]},A8:{U:C.userInfo[U]},r:C.token},BY:{B:{AA:C.userInfo[U],'bgnPayDate':'2023-04-24',I:F[I],n:J[s],'endPayDate':'2024-04-24',E:'webALIPAY_01','number':100,c:J[c],'page':H,AJ:J[X],h:H,W:H,P:A,N:A,AB:C.userInfo[AI]},D:'0101051',G:g,V:J[X]},BZ:'010104'};O=await C.fetch(AR,K)
 	async def get_qr_code(B):
 		A=await B.__get_request_key()
-		if _B in A and A[_B]!=0:return A
+		if C in A and A[C]!=0:return A
 		return await B.__get_qr_code()
 	async def check_qr_code(B):
 		A=await B.__get_qr_code_status()
-		if _B in A and A[_B]!=0:return A
+		if C in A and A[C]!=0:return A
 		A=await B.__get_qr_code_token()
-		if _B in A and A[_B]!=0:return A
+		if C in A and A[C]!=0:return A
 		return await B.__get_token()
 	async def send_phone_code(B,phone):
 		A=await B.__get_request_key()
-		if _B in A and A[_B]!=0:return A
+		if C in A and A[C]!=0:return A
 		return await B.__send_code(phone)
 	async def verfiy_phone_code(B,code):
 		A=await B.__verfiy_code(code)
-		if _B in A and A[_B]!=0:return A
+		if C in A and A[C]!=0:return A
 		return await B.__get_token()
-	async def __get_token(B):
-		A=await B.__get_request_key()
-		if _B in A and A[_B]!=0:return A
-		A=await B.__get_request_authorize()
-		if _B in A and A[_B]!=0:return A
-		A=await B.__get_web_token()
-		if _B in A and A[_B]!=0:return A
-		A=await B.__get_door_number()
-		if _B in A and A[_B]!=0:return A
-		B.need_login=_s;await B.save_data();return{_B:0,_A:B.powerUserList}
-	async def refresh_data(B,setup=_s):
-		m='daily_t_ele_num';l='daily_n_ele_num';k='daily_v_ele_num';j='daily_p_ele_num';i='daily_ele_num';h='last_month_ele_cost';g='last_month_ele_num';f='year_ele_cost';e='year_ele_num';d='monthEleNum';c='thisTPq';b='thisNPq';a='thisVPq';Z='thisPPq';Q='balance';P='ladder_level_num';O='ladder_level';K='%Y%m%d';J='day';H='dayElePq'
-		if B.need_login is True:LOGGER.error('国家电网需要重新登录！');return
-		n=setup or int(time.time()*1000)-B.timestamp>B.refresh_interval*3600*1000
-		if n is _s:return
-		D=await B.__get_door_number()
-		if _B in D and D[_B]!=0:
-			LOGGER.warning('刷新 Token');D=await B.__get_request_key()
-			if _B in D and D[_B]!=0:return
-			D=await B.__refresh_web_token()
-			if _B in D and D[_B]==0:await B.save_data()
-			else:B.need_login=True;LOGGER.error('刷新 Token 失败');return
-			D=await B.__get_door_number()
-			if _B in D and D[_B]!=0:LOGGER.error('重新请求失败');return
-		R=datetime.datetime.now();I=R-datetime.timedelta(days=1);o=f"{I.year}-{I.month:02d}-{I.day:02d}";L=I-datetime.timedelta(days=40);p=f"{L.year}-{L.month:02d}-{L.day:02d}"
+	async def __get_token(D):
+		A=await D.__get_request_key()
+		if C in A and A[C]!=0:return A
+		A=await D.__get_request_authorize()
+		if C in A and A[C]!=0:return A
+		A=await D.__get_web_token()
+		if C in A and A[C]!=0:return A
+		A=await D.__get_door_number()
+		if C in A and A[C]!=0:return A
+		D.need_login=z;await D.save_data();return{C:0,B:D.powerUserList}
+	async def refresh_data(B,setup=z):
+		q='daily_t_ele_num';p='daily_n_ele_num';o='daily_v_ele_num';n='daily_p_ele_num';m='daily_ele_num';l='last_month_ele_cost';j='last_month_ele_num';i='year_ele_cost';h='year_ele_num';g='monthEleNum';f='thisTPq';e='thisNPq';d='thisVPq';c='thisPPq';S='balance';Q='ladder_level_num';P='ladder_level';L='%Y%m%d';K='day';I='dayElePq';r=setup or int(Af.time()*1000)-B.timestamp>B.refresh_interval*3600*1000
+		if r is z:return
+		E=await B.__get_door_number()
+		if C in E and E[C]!=0:
+			A0.warning('刷新 Token');E=await B.__get_request_key()
+			if C in E and E[C]!=0:return
+			E=await B.__refresh_web_token()
+			if C in E and E[C]==0:await B.save_data()
+			else:B.need_login=AV;A0.error('刷新 Token 失败');return
+			E=await B.__get_door_number()
+			if C in E and E[C]!=0:B.need_login=AV;A0.error('重新请求失败');return
+		T=k.datetime.now();J=T-k.timedelta(days=1);u=f"{J.year}-{J.month:02d}-{J.day:02d}";M=J-k.timedelta(days=40);v=f"{M.year}-{M.month:02d}-{M.day:02d}"
 		for A in B.powerUserList:
-			q=A[_m];B.doorAccountDict[q]=A;await B.__get_door_balance(A);await B.__get_door_daily_bill(A,R.year,p,o);M=A[_V][0]
-			try:float(M[H])
-			except:A[_V].pop(0)
-			M=A[_V][0];E=datetime.datetime.strptime(M[J],K);S=0;T=0;U=0;V=0;W=0
-			for C in A[_V]:
-				G=datetime.datetime.strptime(C[J],K)
-				if G.month!=E.month:break
-				S+=catchFloat(C[H]);T+=catchFloat(C[Z]);U+=catchFloat(C[a]);V+=catchFloat(C[b]);W+=catchFloat(C[c])
-			N=E-datetime.timedelta(days=E.day);X=f"{N.year}-{N.month:02d}"
-			if _AI not in A or A[_AI]!=X:await B.__get_door_bill(A,N.year);await B.__get_door_ladder(A,X)
-			r=datetime.datetime.strptime(A[_AI],'%Y%m')
-			if r.month==12:
-				F=0
-				for C in A[_V]:
-					G=datetime.datetime.strptime(C[J],K)
-					if G.month!=12:break
-					F+=catchFloat(C[H])
+			w=A[s];B.doorAccountDict[w]=A;await B.__get_door_balance(A);await B.__get_door_daily_bill(A,T.year,v,u);N=A[Y][0]
+			try:float(N[I])
+			except:A[Y].pop(0)
+			N=A[Y][0];F=k.datetime.strptime(N[K],L);U=0;V=0;W=0;X=0;Z=0
+			for D in A[Y]:
+				H=k.datetime.strptime(D[K],L)
+				if H.month!=F.month:break
+				U+=R(D,I);V+=R(D,c);W+=R(D,d);X+=R(D,e);Z+=R(D,f)
+			O=F-k.timedelta(days=F.day);a=f"{O.year}-{O.month:02d}"
+			if Ae not in A or A[Ae]!=a:await B.__get_door_bill(A,O.year);await B.__get_door_ladder(A,a)
+			x=k.datetime.strptime(A[Ae],'%Y%m')
+			if x.month==12:
+				G=0
+				for D in A[Y]:
+					H=k.datetime.strptime(D[K],L)
+					if H.month!=12:break
+					G+=R(D,I)
 			else:
-				F=0
-				for C in A[_A3]:F+=catchFloat(C[d])
-				s=len(A[_A3])
-				for C in A[_V]:
-					G=datetime.datetime.strptime(C[J],K)
-					if G.month<=s:break
-					F+=catchFloat(C[H])
-			if F<=2760:A[O]='第一阶梯';A[P]=1
-			elif F<=4800:A[O]='第二阶梯';A[P]=2
-			else:A[O]='第三阶梯';A[P]=3
-			if _AG in A:
-				A[Q]=catchFloat(A[_AG]['sumMoney']);Y=catchFloat(A[_AG]['historyOwe'])
-				if Y>0:A[Q]=-Y
-			else:A[Q]=0
-			if _AH in A:A[e]=catchFloat(A[_AH]['totalEleNum']);A[f]=catchFloat(A[_AH]['totalEleCost'])
-			else:A[e]=0;A[f]=0
-			if _A3 in A:A[g]=catchFloat(A[_A3][-1][d]);A[h]=catchFloat(A[_A3][-1]['monthEleCost'])
-			else:A[g]=0;A[h]=0
-			if _V in A:A[i]=catchFloat(A[_V][0][H]);A[j]=catchFloat(A[_V][0][Z]);A[k]=catchFloat(A[_V][0][a]);A[l]=catchFloat(A[_V][0][b]);A[m]=catchFloat(A[_V][0][c])
-			else:A[i]=0;A[j]=0;A[k]=0;A[l]=0;A[m]=0
-			A['month_ele_num']=S;A['month_p_ele_num']=T;A['month_v_ele_num']=U;A['month_n_ele_num']=V;A['month_t_ele_num']=W;A['daily_lasted_date']=f"{E.year}-{E.month:02d}-{E.day:02d}"
+				G=0
+				for D in A[AD]:G+=R(D,g)
+				y=t(A[AD])
+				for D in A[Y]:
+					H=k.datetime.strptime(D[K],L)
+					if H.month<=y:break
+					G+=R(D,I)
+			if G<=2760:A[P]='第一阶梯';A[Q]=1
+			elif G<=4800:A[P]='第二阶梯';A[Q]=2
+			else:A[P]='第三阶梯';A[Q]=3
+			if Ac in A:
+				A[S]=R(A[Ac],'prepayBal');b=R(A[Ac],'historyOwe')
+				if b>0:A[S]=-b
+			else:A[S]=0
+			if Ad in A:A[h]=R(A[Ad],'totalEleNum');A[i]=R(A[Ad],'totalEleCost')
+			else:A[h]=0;A[i]=0
+			if AD in A:A[j]=R(A[AD][-1],g);A[l]=R(A[AD][-1],'monthEleCost')
+			else:A[j]=0;A[l]=0
+			if Y in A:A[m]=R(A[Y][0],I);A[n]=R(A[Y][0],c);A[o]=R(A[Y][0],d);A[p]=R(A[Y][0],e);A[q]=R(A[Y][0],f)
+			else:A[m]=0;A[n]=0;A[o]=0;A[p]=0;A[q]=0
+			A['month_ele_num']=U;A['month_p_ele_num']=V;A['month_v_ele_num']=W;A['month_n_ele_num']=X;A['month_t_ele_num']=Z;A['daily_lasted_date']=f"{F.year}-{F.month:02d}-{F.day:02d}"
 		await B.save_data()
 	async def get_door_account_list(A):return list(A.doorAccountDict.values())
 	def get_door_account(A):return A.doorAccountDict
