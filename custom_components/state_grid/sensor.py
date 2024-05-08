@@ -12,6 +12,8 @@ from homeassistant.helpers.device_registry import DeviceEntryType
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
+import datetime
+
 from .const import DOMAIN, VERSION
 from .data_client import StateGridDataClient
 from .coordinator import StateGridCoordinator
@@ -129,6 +131,10 @@ SENSOR_TYPES = (
     SensorEntityDescription(
         key="daily_lasted_date",
         translation_key="daily_lasted_date"
+    ),
+    SensorEntityDescription(
+        key="refresh_time",
+        translation_key="refresh_time"
     )
 )
 
